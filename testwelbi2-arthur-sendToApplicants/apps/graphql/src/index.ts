@@ -31,8 +31,8 @@ async function startServer() {
   }));
 
   // CORS
-  app.use(cors(serverConfig.cors));
-
+  app.use(cors());
+  
   // Logging
   if (isDev) {
     app.use(morgan('dev'));

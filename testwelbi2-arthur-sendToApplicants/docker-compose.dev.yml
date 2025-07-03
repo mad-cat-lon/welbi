@@ -26,7 +26,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - VITE_GRAPHQL_URL=http://localhost/graphql
+      - VITE_GRAPHQL_URL=http://localhost:400/graphql
     ports:
       - "5173:5173"
     networks:

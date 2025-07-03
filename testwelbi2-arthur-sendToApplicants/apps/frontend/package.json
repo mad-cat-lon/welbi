@@ -9,7 +9,12 @@
     "preview": "vite preview",
     "clean": "rimraf dist",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "graphql-codegen --config codegen.ts --watch"
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "react": "latest",
@@ -29,7 +34,7 @@
     "@types/bun": "latest",
     "@vitejs/plugin-react": "latest",
     "typescript": "latest",
-    "vite": "latest",
+    "vite": "^5.2.8",
     "rimraf": "latest",
     "@tanstack/router-vite-plugin": "~1.123.2"
   }

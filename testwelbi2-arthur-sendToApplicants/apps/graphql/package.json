@@ -6,10 +6,14 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "cross-env DATABASE_URL=sqlite:../../database.sqlite bun run src/index.ts",
-    "start": "cross-env DATABASE_URL=sqlite:../../database.sqlite node dist/index.js",
+    "dev": "bunx cross-env DATABASE_URL=sqlite:../../database.sqlite bun run src/index.ts",
+    "start": "bunx cross-env DATABASE_URL=sqlite:../../database.sqlite node dist/index.js",
     "clean": "rimraf dist",
-    "generate-schema": "bun run src/generate-schema.ts"
+    "generate-schema": "bun run src/generate-schema.ts",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
