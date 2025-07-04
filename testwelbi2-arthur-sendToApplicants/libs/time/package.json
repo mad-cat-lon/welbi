@@ -8,14 +8,19 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "date-fns": "latest",
-    "date-fns-tz": "latest"
+    "date-fns-tz": "latest",
+    "vitest": "~3.2.4"
   },
   "devDependencies": {
     "typescript": "latest",
