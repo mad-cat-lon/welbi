@@ -28,10 +28,17 @@ jobs:
       uses: oven-sh/setup-bun@v1
       with:
         bun-version: latest
+
+        
+    - name: Install pnpm
+      run: npm install -g pnpm  
         
     - name: Install Rush
-      run: npm install -g @microsoft/rush
-      
+      run: pnpm install -g @microsoft/rush
+    
+    - name: Generate lock file (rush update)
+      run: rush update  
+    
     - name: Install dependencies
       run: rush install
       
