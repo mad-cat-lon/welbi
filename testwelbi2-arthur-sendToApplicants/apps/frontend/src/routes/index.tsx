@@ -50,7 +50,7 @@ const CalendarEventsQuery = graphql(`
   }
 `)
 
-function HomePage() {
+export function HomePage() {
   const search = Route.useSearch() as SearchParams
   const navigate = Route.useNavigate()
   
@@ -80,11 +80,11 @@ function HomePage() {
 
   // Debug logging for raw data
   React.useEffect(() => {
-    console.log('🔍 Raw GraphQL Responses:')
-    console.log('Events data (sidebar):', eventsData)
-    console.log('Calendar events data:', calendarEventsData)
-    console.log('Events loading states:', { eventsLoading, calendarEventsLoading })
-    console.log('Events errors:', { eventsError, calendarEventsError })
+    // console.log('🔍 Raw GraphQL Responses:')
+    // console.log('Events data (sidebar):', eventsData)
+    // console.log('Calendar events data:', calendarEventsData)
+    // console.log('Events loading states:', { eventsLoading, calendarEventsLoading })
+    // console.log('Events errors:', { eventsError, calendarEventsError })
   }, [eventsData, calendarEventsData, eventsLoading, calendarEventsLoading, eventsError, calendarEventsError])
 
   // Transform GraphQL events to Calendar events
@@ -97,7 +97,7 @@ function HomePage() {
       return []
     }
     
-    console.log('📊 Raw calendar events from GraphQL:', calendarEventsData.events)
+    // console.log('📊 Raw calendar events from GraphQL:', calendarEventsData.events)
     
     const transformed = calendarEventsData.events.map(event => {
       const transformedEvent = {
@@ -111,13 +111,13 @@ function HomePage() {
         maxParticipants: event.maxParticipants || undefined,
       }
       
-      console.log('🔄 Transformed event:', {
-        id: transformedEvent.id,
-        title: transformedEvent.title,
-        startTime: transformedEvent.startTime,
-        startDate: new Date(transformedEvent.startTime).toLocaleDateString(),
-        status: transformedEvent.status
-      })
+      // console.log('🔄 Transformed event:', {
+      //   id: transformedEvent.id,
+      //   title: transformedEvent.title,
+      //   startTime: transformedEvent.startTime,
+      //   startDate: new Date(transformedEvent.startTime).toLocaleDateString(),
+      //   status: transformedEvent.status
+      // })
       
       return transformedEvent
     })
@@ -170,48 +170,48 @@ function HomePage() {
   }
 
   // Debug logging for sidebar events
-  React.useEffect(() => {
-    console.log('📋 SIDEBAR EVENTS DEBUG:')
-    console.log('Raw sidebar events data:', eventsData?.events)
-    console.log('Sidebar events count:', eventsData?.events?.length || 0)
-    console.log('Raw eventsData structure:', eventsData)
+  // React.useEffect(() => {
+  //   console.log('📋 SIDEBAR EVENTS DEBUG:')
+  //   console.log('Raw sidebar events data:', eventsData?.events)
+  //   console.log('Sidebar events count:', eventsData?.events?.length || 0)
+  //   console.log('Raw eventsData structure:', eventsData)
     
-    if (eventsData?.events) {
-      eventsData.events.forEach((event, index) => {
-        console.log(`📋 Sidebar Event ${index + 1}:`, {
-          id: event.id,
-          title: event.title,
-          startTime: event.startTime,
-          startDate: new Date(event.startTime).toLocaleDateString(),
-          startDateTime: new Date(event.startTime).toLocaleString(),
-          status: event.status
-        })
-      })
-    }
-  }, [eventsData])
+  //   if (eventsData?.events) {
+  //     eventsData.events.forEach((event, index) => {
+  //       console.log(`📋 Sidebar Event ${index + 1}:`, {
+  //         id: event.id,
+  //         title: event.title,
+  //         startTime: event.startTime,
+  //         startDate: new Date(event.startTime).toLocaleDateString(),
+  //         startDateTime: new Date(event.startTime).toLocaleString(),
+  //         status: event.status
+  //       })
+  //     })
+  //   }
+  // }, [eventsData])
 
   // Debug logging for calendar
-  React.useEffect(() => {
-    console.log('📅 CALENDAR EVENTS DEBUG:')
-    console.log('Calendar events passed to component:', calendarEvents)
-    console.log('Calendar events count:', calendarEvents.length)
-    console.log('Current calendar date:', initialDate.toLocaleDateString())
-    console.log('Current calendar month/year:', initialDate.getMonth() + 1, initialDate.getFullYear())
+  // React.useEffect(() => {
+  //   console.log('📅 CALENDAR EVENTS DEBUG:')
+  //   console.log('Calendar events passed to component:', calendarEvents)
+  //   console.log('Calendar events count:', calendarEvents.length)
+  //   console.log('Current calendar date:', initialDate.toLocaleDateString())
+  //   console.log('Current calendar month/year:', initialDate.getMonth() + 1, initialDate.getFullYear())
     
-    if (calendarEvents.length > 0) {
-      console.log('📅 Calendar events by date:')
-      calendarEvents.forEach((event, index) => {
-        console.log(`📅 Calendar Event ${index + 1}:`, {
-          id: event.id,
-          title: event.title,
-          startTime: event.startTime,
-          startDate: new Date(event.startTime).toLocaleDateString(),
-          startDateTime: new Date(event.startTime).toLocaleString(),
-          status: event.status
-        })
-      })
-    }
-  }, [calendarEvents, initialDate])
+  //   if (calendarEvents.length > 0) {
+  //     console.log('📅 Calendar events by date:')
+  //     calendarEvents.forEach((event, index) => {
+  //       console.log(`📅 Calendar Event ${index + 1}:`, {
+  //         id: event.id,
+  //         title: event.title,
+  //         startTime: event.startTime,
+  //         startDate: new Date(event.startTime).toLocaleDateString(),
+  //         startDateTime: new Date(event.startTime).toLocaleString(),
+  //         status: event.status
+  //       })
+  //     })
+  //   }
+  // }, [calendarEvents, initialDate])
 
   return (
     <Box>

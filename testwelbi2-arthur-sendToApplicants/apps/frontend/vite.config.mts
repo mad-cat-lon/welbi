@@ -15,9 +15,8 @@ export default defineConfig({
     }),
     react(),
     viteStaticCopy({
-      targets: {
-        'dist/assets': 'src/assets',
-      },
+      targets: [
+      ],
     }),
   ],
   server: {
@@ -43,7 +42,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: './src/setupTests.ts',
+    setupFiles: './src/tests/setupTests.ts',
     exclude: [...configDefaults.exclude, 'e2e/**'],
     coverage: {
       reporter: ['text', 'html'],

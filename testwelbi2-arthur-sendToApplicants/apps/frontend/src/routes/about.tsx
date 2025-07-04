@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Typography, Box } from '@testwelbi/ui'
 
-function AboutPage() {
+export function AboutPage() {
   return (
     <Box>
       <Typography $variant="h2" $gutterBottom>

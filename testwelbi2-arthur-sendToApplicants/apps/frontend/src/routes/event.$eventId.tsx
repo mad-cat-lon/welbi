@@ -32,7 +32,7 @@ const EventDetailQuery = graphql(`
   }
 `)
 
-function EventDetailPage() {
+export function EventDetailPage() {
   const { eventId } = Route.useParams()
   
   const { data: eventData, isLoading, error } = useQuery({

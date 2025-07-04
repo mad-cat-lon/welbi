@@ -2,10 +2,10 @@
   "name": "@testwelbi/ui",
   "version": "1.0.0",
   "description": "UI components using Base UI",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "type": "module",
+  "main": "dist/index.js",
   "scripts": {
     "build": "bun run build:parcel",
     "build:parcel": "parcel build src/index.ts --dist-dir dist",
