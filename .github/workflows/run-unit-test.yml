@@ -44,7 +44,7 @@ jobs:
     
 
     - name: Install dependencies
-      run: rush install --prefer-offline
+      run: rush install
       
     - name: Build all projects
       run: rush build
