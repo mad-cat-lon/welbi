@@ -14,7 +14,17 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:report": "playwright show-report",
+    "test:e2e:install": "playwright install",
+    "test:perf": "vitest run --config vitest.perf.config.ts",
+    "test:perf:frontend": "lighthouse http://localhost:5173 --output=json --output-path=../../performance/reports/frontend-lighthouse.json",
+    "test:perf:bundle": "npm run build && webpack-bundle-analyzer dist/stats.json",
+    "test:perf:core-web-vitals": "node ../../performance/core-web-vitals/measure-cwv.js",
+    "test:perf:memory": "node ../../performance/memory-tests/frontend-memory-test.js"
   },
   "dependencies": {
     "react": "latest",
@@ -29,7 +39,13 @@
     "@testing-library/react": "~16.3.0",
     "@testing-library/dom": "~10.4.0",
     "@faker-js/faker": "~9.9.0",
-    "@vitest/coverage-v8": "3.2.4"
+    "@vitest/coverage-v8": "3.2.4",
+    "playwright": "~1.53.2",
+    "@playwright/test": "~1.53.2",
+    "lighthouse": "^11.6.0",
+    "@lhci/cli": "^0.12.0",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "puppeteer": "^21.6.1"
   },
   "devDependencies": {
     "@types/react": "latest",

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { execute } from '../src/graphql/execute';
-import type { TypedDocumentString } from '../src/graphql/graphql';
+import { execute } from '../../src/graphql/execute';
+import type { TypedDocumentString } from '../../src/graphql/graphql';
 
 // Minimal mock for TypedDocumentString
 const mockQuery = new String('query { foo }') as TypedDocumentString<{ foo: string }, {}>;
