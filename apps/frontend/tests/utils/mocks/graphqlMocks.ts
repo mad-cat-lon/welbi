@@ -129,8 +129,6 @@ export const mockUseQuery = vi.fn(({ queryKey }: { queryKey: string[] }) => {
   const key = queryKey[0];
   const response = queryResponses[key];
 
-  console.log(`🔍 useQuery for "${key}":`, response);
-
   return (
     response || {
       data: undefined,
