@@ -1,5 +1,7 @@
 name: Unit Tests
-
+env:
+  PUPPETEER_SKIP_DOWNLOAD: true
+  
 on:
   push:
     branches: [ main, develop ]
@@ -9,7 +11,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: true
     strategy:
       matrix:
         node-version: [18.x, 20.x]
