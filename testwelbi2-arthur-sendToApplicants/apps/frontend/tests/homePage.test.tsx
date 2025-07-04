@@ -8,13 +8,18 @@ import * as Router from '@tanstack/react-router'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import './__mocks__/graphqlMocks'
-import { mockUseQuery } from './__mocks__/graphqlMocks'
+import './mocks/graphqlMocks.ts'
+
+import {
+  mockUseQuery,
+  resetMockQueryResponses,
+  setMockQueryResponse,
+} from './mocks/graphqlMocks.ts'
+
+
 import { routeTree } from '../src/routeTree.gen.ts'
-import { execute } from '../src/graphql/execute'
 import { HomePage } from '../src/routes/index'
 
-// Import the GraphQL queries from the component
 import { graphql } from '../src/graphql'
 
 const HealthQuery = graphql(`
@@ -67,6 +72,7 @@ const queryClient = new QueryClient({
 
 const mockNavigate = vi.fn()
 
+
 vi.mock('@tanstack/react-router', async () => {
   const actual = await vi.importActual<typeof Router>('@tanstack/react-router')
   return {
@@ -91,72 +97,7 @@ describe('Home page', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     queryClient.clear()
-    
-    // Reset the mock to its default behavior
-    mockUseQuery.mockImplementation(({ queryKey }: any) => {
-      console.log('🔍 Mock useQuery called with queryKey:', queryKey)
-      
-      if (queryKey[0] === 'health') {
-        console.log('✅ Returning health data')
-        return {
-          data: { health: 'OK' },
-          isLoading: false,
-          error: null,
-        }
-      }
-      
-      if (queryKey[0] === 'events') {
-        console.log('✅ Returning sidebar events data')
-        return {
-          data: { 
-            events: [
-              {
-                id: '2',
-                title: 'Mock Sidebar Event',
-                description: '',
-                startTime: new Date().toISOString(),
-                endTime: new Date(Date.now() + 7200000).toISOString(),
-                currentParticipants: 1,
-                maxParticipants: 5,
-                registrationRequired: false,
-                status: 'scheduled',
-              }
-            ] 
-          },
-          isLoading: false,
-          error: null,
-        }
-      }
-      
-      if (queryKey[0] === 'calendar-events') {
-        console.log('✅ Returning calendar events data')
-        return {
-          data: { 
-            events: [
-              {
-                id: '1',
-                title: 'Mock Calendar Event',
-                startTime: new Date().toISOString(),
-                endTime: new Date(Date.now() + 3600000).toISOString(),
-                status: 'scheduled',
-                description: 'Test description',
-                currentParticipants: 2,
-                maxParticipants: 10,
-              }
-            ] 
-          },
-          isLoading: false,
-          error: null,
-        }
-      }
-      
-      console.warn('❌ Unknown query key:', queryKey)
-      return {
-        data: undefined,
-        isLoading: false,
-        error: null,
-      }
-    })
+    resetMockQueryResponses()
   })
 
   it('renders the health status', async () => {
@@ -172,21 +113,12 @@ describe('Home page', () => {
   })
 
   it('displays error message if health check fails', async () => {
-    mockUseQuery.mockImplementation(({ queryKey }: any) => {
-      if (queryKey[0] === 'health') {
-        return {
-          data: undefined,
-          isLoading: false,
-          error: new Error('Connection timeout'),
-        }
-      }
-      return {
-        data: undefined,
-        isLoading: false,
-        error: null,
-      }
+    setMockQueryResponse('health', {
+      data: undefined,
+      isLoading: false,
+      error: new Error('Connection timeout'),
     })
-  
+
     render(
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}>
@@ -218,20 +150,10 @@ describe('Home page', () => {
   })
 
   it('shows loading message while fetching calendar events', () => {
-    mockUseQuery.mockImplementation(({ queryKey }: any) => {
-      if (queryKey[0] === 'calendar-events') {
-        return {
-          data: null,
-          isLoading: true,
-          error: null,
-        }
-      }
-      // fallback to default mock behavior
-      return {
-        data: undefined,
-        isLoading: false,
-        error: null,
-      }
+    setMockQueryResponse('calendar-events', {
+      data: null,
+      isLoading: true,
+      error: null,
     })
   
     render(
@@ -246,20 +168,11 @@ describe('Home page', () => {
   })
 
   it('renders calendar without crashing when there are no events', async () => {
-    mockUseQuery.mockImplementation(({ queryKey }: any) => {
-      if (queryKey[0] === 'calendar-events') {
-        return {
-          data: { events: [] },
-          isLoading: false,
-          error: null,
-        }
-      }
-      // Return default mock behavior for other queries
-      return {
-        data: undefined,
-        isLoading: false,
-        error: null,
-      }
+
+    setMockQueryResponse('calendar-events', {
+      data: { events: [] },
+      isLoading: false,
+      error: null,
     })
   
     render(
@@ -278,22 +191,12 @@ describe('Home page', () => {
   })
 
   it('handles calendar events with missing fields gracefully', async () => {
-    mockUseQuery.mockImplementation(({ queryKey }: any) => {
-      if (queryKey[0] === 'calendar-events') {
-        return {
-          data: {
-            events: [{ id: 'x', title: null, startTime: null, endTime: null, status: null }]
-          },
-          isLoading: false,
-          error: null,
-        }
-      }
-      // Return default mock behavior for other queries
-      return {
-        data: undefined,
-        isLoading: false,
-        error: null,
-      }
+    setMockQueryResponse('calendar-events', {
+      data: {
+        events: [{ id: 'x', title: null, startTime: null, endTime: null, status: null }]
+      },
+      isLoading: false,
+      error: null,
     })
   
     render(
@@ -336,29 +239,19 @@ describe('Home page', () => {
   })
 
   it('renders message when there are no sidebar events', async () => {
-    mockUseQuery.mockImplementation(({ queryKey }: any) => {
-      if (queryKey[0] === 'events') {
-        return {
-          data: { events: [] },
-          isLoading: false,
-          error: null,
-        }
-      }
-      if (queryKey[0] === 'health') {
-        return {
-          data: { health: 'OK' },
-          isLoading: false,
-          error: null,
-        }
-      }
-      // Return default mock behavior for other queries
-      return {
-        data: undefined,
-        isLoading: false,
-        error: null,
-      }
-    })
   
+    setMockQueryResponse('events', {
+      data: { events: [] },
+      isLoading: false,
+      error: null,
+    })
+
+    setMockQueryResponse('health', {
+      data: { health: 'OK' },
+      isLoading: false,
+      error: null,
+    })
+
     render(
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}>
