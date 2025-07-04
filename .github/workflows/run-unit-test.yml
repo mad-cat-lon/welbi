@@ -63,7 +63,7 @@ jobs:
 
         for project in "${PROJECTS[@]}"; do
           echo "Running tests in $project"
-          (cd "$project" && rushx test || echo "Tests failed in $project")
+          (cd "$project" && rushx test:coverage || echo "Tests failed in $project")
         done
     - name: Upload test results
       uses: actions/upload-artifact@v4
