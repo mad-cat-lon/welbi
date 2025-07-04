@@ -1,19 +1,16 @@
 // tests/web/HomePage.test.tsx
 import React from 'react'
-import { render, screen, waitFor, within } from '@testing-library/react'
-import { vi } from 'vitest'
-import { useQuery } from '@tanstack/react-query'
-import * as Router from '@tanstack/react-router'
-
-import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {screen, waitFor, within } from '@testing-library/react'
 
 import '../utils/mocks/graphqlMocks.ts'
 
 import {
-  mockUseQuery,
   resetMockQueryResponses,
   setMockQueryResponse,
+  setLoadingState,
+  setErrorState,
+  setSuccessState,
+  setEmptyState
 } from '../utils/mocks/graphqlMocks.ts'
 import { HomePage } from '../../src/routes/index.tsx'
 import { customRender, setupTestEnv } from '../utils/testUtils.tsx'
@@ -31,11 +28,7 @@ describe('Home page', () => {
   })
 
   it('displays error message if health check fails', async () => {
-    setMockQueryResponse('health', {
-      data: undefined,
-      isLoading: false,
-      error: new Error('Connection timeout'),
-    })
+    setErrorState('health', 'Connection timeout')
 
     customRender(<HomePage />)
 
@@ -56,11 +49,7 @@ describe('Home page', () => {
   })
 
   it('shows loading message while fetching calendar events', () => {
-    setMockQueryResponse('calendar-events', {
-      data: null,
-      isLoading: true,
-      error: null,
-    })
+    setLoadingState('calendar-events')
   
     customRender(<HomePage />)
   
@@ -69,11 +58,7 @@ describe('Home page', () => {
 
   it('renders calendar without crashing when there are no events', async () => {
 
-    setMockQueryResponse('calendar-events', {
-      data: { events: [] },
-      isLoading: false,
-      error: null,
-    })
+    setEmptyState('calendar-events')
   
     customRender(<HomePage />)
   
@@ -85,12 +70,8 @@ describe('Home page', () => {
   })
 
   it('handles calendar events with missing fields gracefully', async () => {
-    setMockQueryResponse('calendar-events', {
-      data: {
-        events: [{ id: 'x', title: null, startTime: null, endTime: null, status: null }]
-      },
-      isLoading: false,
-      error: null,
+    setSuccessState('calendar-events', {
+      events: [{ id: 'x', title: null, startTime: null, endTime: null, status: null }]
     })
   
     customRender(<HomePage />)
@@ -122,17 +103,9 @@ describe('Home page', () => {
 
   it('renders message when there are no sidebar events', async () => {
   
-    setMockQueryResponse('events', {
-      data: { events: [] },
-      isLoading: false,
-      error: null,
-    })
+    setEmptyState('events')
 
-    setMockQueryResponse('health', {
-      data: { health: 'OK' },
-      isLoading: false,
-      error: null,
-    })
+    setSuccessState('health', { health: 'OK' })
 
     customRender(<HomePage />)
   

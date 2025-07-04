@@ -2,7 +2,14 @@ import React from 'react'
 import { screen, waitFor, within } from '@testing-library/react'
 import { describe, it, beforeEach, vi } from 'vitest'
 import { customRender, setupTestEnv, getQueryClient, mockNavigate } from '../utils/testUtils'
-import { setMockQueryResponse, resetMockQueryResponses, mockEventDetail } from '../utils/mocks/graphqlMocks'
+import { 
+  setMockQueryResponse,
+  resetMockQueryResponses,
+  mockEventDetail,
+  setLoadingState,
+  setErrorState,
+  setEmptyState
+} from '../utils/mocks/graphqlMocks'
 import { EventDetailPage } from '../../src/routes/event.$eventId'
 
 describe('Event Detail Page', () => {
@@ -29,22 +36,14 @@ describe('Event Detail Page', () => {
   })
 
   it('shows loading state while fetching event data', () => {
-    setMockQueryResponse('event', {
-      data: null,
-      isLoading: true,
-      error: null,
-    })
+    setLoadingState('event')
 
     customRender(<EventDetailPage />)
     expect(screen.getByText('Loading Event Details...')).toBeInTheDocument()
   })
 
   it('displays error message when event fetch fails', async () => {
-    setMockQueryResponse('event', {
-      data: null,
-      isLoading: false,
-      error: new Error('Failed to fetch event'),
-    })
+    setErrorState('event', 'Failed to fetch event')
 
     customRender(<EventDetailPage />)
 
@@ -53,11 +52,7 @@ describe('Event Detail Page', () => {
   })
 
   it('shows event not found when event data is null', async () => {
-    setMockQueryResponse('event', {
-      data: { event: null },
-      isLoading: false,
-      error: null,
-    })
+    setEmptyState('event')
 
     customRender(<EventDetailPage />)
     expect(await screen.findByText('Event Not Found')).toBeInTheDocument()
