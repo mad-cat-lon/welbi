@@ -9,8 +9,15 @@ export default defineConfig({
     include: ['tests/unit/*.{test,spec}.{ts,tsx}'],
     setupFiles: ['./tests/setup.ts'],
     coverage: {
-    reporter: ['text', 'lcov'],
-    reportsDirectory: './coverage',
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage',
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        "**/*.config.{js,ts}",
+        "codegen.ts",
+        "**/tests/**",
+        "**/node_modules/**",
+      ]
     },
   },
 })
