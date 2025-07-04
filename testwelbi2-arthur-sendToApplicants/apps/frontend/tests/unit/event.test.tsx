@@ -2,7 +2,7 @@ import React from 'react'
 import { screen, waitFor, within } from '@testing-library/react'
 import { describe, it, beforeEach, vi } from 'vitest'
 import { customRender, setupTestEnv, getQueryClient, mockNavigate } from '../utils/testUtils'
-import { setMockQueryResponse, resetMockQueryResponses, mockEventDetail } from '../mocks/graphqlMocks'
+import { setMockQueryResponse, resetMockQueryResponses, mockEventDetail } from '../utils/mocks/graphqlMocks'
 import { EventDetailPage } from '../../src/routes/event.$eventId'
 
 describe('Event Detail Page', () => {
