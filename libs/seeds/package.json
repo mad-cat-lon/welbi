@@ -16,7 +16,8 @@
     "@testwelbi/drizzle": "workspace:*",
     "@testwelbi/types": "workspace:*",
     "@testwelbi/env-parser": "workspace:*",
-    "playwright": "~1.53.2"
+    "playwright": "~1.53.2",
+    "@vitest/coverage-v8": "3.2.4"
   },
   "devDependencies": {
     "typescript": "latest",

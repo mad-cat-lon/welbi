@@ -230,6 +230,9 @@ importers:
       '@testwelbi/types':
         specifier: workspace:*
         version: link:../types
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       drizzle-kit:
         specifier: latest
         version: 0.31.4
@@ -252,6 +255,9 @@ importers:
       '@testwelbi/types':
         specifier: workspace:*
         version: link:../types
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       playwright:
         specifier: ~1.53.2
         version: 1.53.2
@@ -277,6 +283,9 @@ importers:
       '@testwelbi/types':
         specifier: workspace:*
         version: link:../types
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       graphql:
         specifier: latest
         version: 16.11.0
@@ -296,6 +305,9 @@ importers:
 
   ../../libs/locales:
     dependencies:
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       i18next:
         specifier: latest
         version: 25.3.1(typescript@5.8.3)
@@ -321,6 +333,9 @@ importers:
 
   ../../libs/math:
     dependencies:
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       playwright:
         specifier: ~1.53.2
         version: 1.53.2
@@ -346,6 +361,9 @@ importers:
       '@testwelbi/types':
         specifier: workspace:*
         version: link:../types
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       playwright:
         specifier: ~1.53.2
         version: 1.53.2
@@ -374,6 +392,9 @@ importers:
       '@testwelbi/types':
         specifier: workspace:*
         version: link:../types
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       graphql:
         specifier: latest
         version: 16.11.0
@@ -408,6 +429,9 @@ importers:
       '@testwelbi/types':
         specifier: workspace:*
         version: link:../types
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       playwright:
         specifier: ~1.53.2
         version: 1.53.2
@@ -424,6 +448,9 @@ importers:
 
   ../../libs/time:
     dependencies:
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       date-fns:
         specifier: latest
         version: 4.1.0
@@ -452,6 +479,9 @@ importers:
 
   ../../libs/tracking:
     dependencies:
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       playwright:
         specifier: ~1.53.2
         version: 1.53.2
@@ -468,6 +498,9 @@ importers:
 
   ../../libs/types:
     dependencies:
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       playwright:
         specifier: ~1.53.2
         version: 1.53.2
@@ -484,6 +517,9 @@ importers:
 
   ../../libs/ui:
     dependencies:
+      '@vitest/coverage-v8':
+        specifier: 3.2.4
+        version: 3.2.4(vitest@3.2.4(@types/node@24.0.10)(jsdom@26.1.0)(lightningcss@1.30.1))
       playwright:
         specifier: ~1.53.2
         version: 1.53.2
@@ -13312,7 +13348,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.4
+      debug: 4.4.1(supports-color@8.1.1)
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -13551,7 +13587,7 @@ snapshots:
     dependencies:
       basic-ftp: 5.0.5
       data-uri-to-buffer: 6.0.2
-      debug: 4.3.4
+      debug: 4.4.1(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -14864,7 +14900,7 @@ snapshots:
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.3
-      debug: 4.3.4
+      debug: 4.4.1(supports-color@8.1.1)
       get-uri: 6.0.4
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
@@ -15118,7 +15154,7 @@ snapshots:
   proxy-agent@6.3.1:
     dependencies:
       agent-base: 7.1.3
-      debug: 4.3.4
+      debug: 4.4.1(supports-color@8.1.1)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       lru-cache: 7.18.3
@@ -15691,7 +15727,7 @@ snapshots:
   socks-proxy-agent@8.0.5:
     dependencies:
       agent-base: 7.1.3
-      debug: 4.3.4
+      debug: 4.4.1(supports-color@8.1.1)
       socks: 2.8.5
     transitivePeerDependencies:
       - supports-color
