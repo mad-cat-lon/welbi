@@ -13,7 +13,7 @@ import {
   setEmptyState
 } from '../utils/mocks/graphqlMocks.ts'
 import { HomePage } from '../../src/routes/index.tsx'
-import { customRender, setupTestEnv } from '../utils/testUtils.tsx'
+import { customRender, setupTestEnv } from '../utils/testHarness.tsx'
 
 describe('Home page', () => {
   beforeEach(() => {

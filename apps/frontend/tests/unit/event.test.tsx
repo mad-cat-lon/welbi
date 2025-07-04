@@ -1,7 +1,7 @@
 import React from 'react'
 import { screen, waitFor, within } from '@testing-library/react'
 import { describe, it, beforeEach, vi } from 'vitest'
-import { customRender, setupTestEnv, getQueryClient, mockNavigate } from '../utils/testUtils'
+import { customRender, setupTestEnv, getQueryClient, mockNavigate } from '../utils/testHarness'
 import { 
   setMockQueryResponse,
   resetMockQueryResponses,

@@ -68,9 +68,9 @@ vi.mock('@tanstack/react-router', async () => {
   return {
     ...actual,
     Route: {
-      useSearch: () => ({ year: 2025, month: 7 }),
+      useParams: () => currentParams,
+      useSearch: () => currentSearch,
       useNavigate: () => mockNavigate,
-      useParams: () => ({ eventId: 'test-event-1' }),
     },
   }
 })
