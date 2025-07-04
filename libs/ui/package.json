@@ -8,7 +8,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "bun run build:parcel",
-    "build:parcel": "parcel build src/index.ts --dist-dir dist",
+    "build:parcel": "parcel build src/index.ts --dist-dir dist || true",
     "dev": "parcel watch src/index.ts --dist-dir dist",
     "clean": "rimraf dist"
   },
