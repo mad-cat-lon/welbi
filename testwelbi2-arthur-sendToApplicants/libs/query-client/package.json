@@ -15,7 +15,8 @@
     "graphql": "latest",
     "graphql-request": "latest",
     "@testwelbi/types": "workspace:*",
-    "@testwelbi/graphql-schema": "workspace:*"
+    "@testwelbi/graphql-schema": "workspace:*",
+    "playwright": "~1.53.2"
   },
   "devDependencies": {
     "typescript": "latest",

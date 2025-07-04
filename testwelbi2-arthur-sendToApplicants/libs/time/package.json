@@ -20,7 +20,8 @@
   "dependencies": {
     "date-fns": "latest",
     "date-fns-tz": "latest",
-    "vitest": "~3.2.4"
+    "vitest": "~3.2.4",
+    "playwright": "~1.53.2"
   },
   "devDependencies": {
     "typescript": "latest",

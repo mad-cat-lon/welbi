@@ -15,7 +15,8 @@
     "drizzle-orm": "latest",
     "drizzle-kit": "latest",
     "@testwelbi/types": "workspace:*",
-    "@testwelbi/env-parser": "workspace:*"
+    "@testwelbi/env-parser": "workspace:*",
+    "playwright": "~1.53.2"
   },
   "devDependencies": {
     "typescript": "latest",

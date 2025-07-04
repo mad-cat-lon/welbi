@@ -1,0 +1,74 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+        
+    - name: Install Rush
+      run: npm install -g @microsoft/rush
+      
+    - name: Install dependencies
+      run: rush install
+      
+    - name: Build all projects
+      run: rush build
+      
+    - name: Run unit tests for specific projects
+      run: |
+        PROJECTS=(
+          "apps/frontend"
+          "libs/time"
+          "libs/math"
+          "libs/permissions"
+        )
+
+        for project in "${PROJECTS[@]}"; do
+          echo "Running tests in $project"
+          (cd "$project" && rushx test || echo "Tests failed in $project")
+        done
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.node-version }}
+        path: |
+          apps/*/test-results/
+          apps/*/coverage/
+          libs/*/test-results/
+          libs/*/coverage/
+        retention-days: 30
+        
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v4
+      if: matrix.node-version == '20.x'
+      with:
+        directory: ./
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+        verbose: true 

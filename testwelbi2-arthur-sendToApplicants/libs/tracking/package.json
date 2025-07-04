@@ -20,5 +20,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "playwright": "~1.53.2"
+  }
 } 

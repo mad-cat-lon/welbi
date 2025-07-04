@@ -1,5 +1,15 @@
 {
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "artillery": "^2.0.0-27",
+    "autocannon": "^7.15.0",
+    "lighthouse": "^11.6.0",
+    "lighthouse-ci": "^0.12.0",
+    "@lhci/cli": "^0.12.0",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "bundle-analyzer": "^0.1.0",
+    "puppeteer": "^21.6.1",
+    "k6": "latest",
+    "wrk": "^0.1.0"
   }
 }

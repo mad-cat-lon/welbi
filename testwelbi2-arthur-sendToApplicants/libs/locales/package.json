@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "i18next": "latest",
-    "react-i18next": "latest"
+    "react-i18next": "latest",
+    "playwright": "~1.53.2"
   },
   "devDependencies": {
     "typescript": "latest",

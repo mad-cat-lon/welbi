@@ -8,14 +8,20 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@casl/ability": "latest",
-    "@testwelbi/types": "workspace:*"
+    "@testwelbi/types": "workspace:*",
+    "vitest": "~3.2.4",
+    "playwright": "~1.53.2"
   },
   "devDependencies": {
     "typescript": "latest",

@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "graphql": "latest",
-    "@testwelbi/types": "workspace:*"
+    "@testwelbi/types": "workspace:*",
+    "playwright": "~1.53.2"
   },
   "devDependencies": {
     "typescript": "latest",
