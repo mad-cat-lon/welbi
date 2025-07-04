@@ -1,6 +1,7 @@
 ## Unit tests
 - All unit tests are stored in `apps/frontend/tests/unit`
 - Follow the format `route.test.tsx` with one test file per route
+- Run with `rushx test`
 ### Test harness
 - `apps/frontend/tests/testUtils.tsx`
 - Renders components in a test-friendly environment with `customRender`
