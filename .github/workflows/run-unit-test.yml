@@ -32,6 +32,13 @@ jobs:
     - name: Install pnpm
       run: npm install -g pnpm  
         
+    - name: Setup pnpm
+      run: |
+        pnpm setup
+        export PNPM_HOME="${HOME}/.local/share/pnpm"
+        echo "PNPM_HOME=${PNPM_HOME}" >> $GITHUB_ENV
+        echo "${PNPM_HOME}" >> $GITHUB_PATH
+
     - name: Install Rush
       run: pnpm install -g @microsoft/rush
     
