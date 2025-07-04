@@ -42,11 +42,9 @@ jobs:
     - name: Install Rush
       run: pnpm install -g @microsoft/rush
     
-    - name: Generate lock file (rush update)
-      run: rush update  
-    
+
     - name: Install dependencies
-      run: rush install
+      run: rush install --prefer-offline
       
     - name: Build all projects
       run: rush build
